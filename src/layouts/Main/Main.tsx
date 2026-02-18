@@ -1,7 +1,6 @@
 import { Input } from "@/components/ui/Input";
 import { useState, type ComponentProps } from "react";
 import style from "./Main.module.css";
-import { Search } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import { useAllCountries } from "@/hooks/useAllCountries";
 import { CountryCard } from "@/components/ui/CountryCard";
+import { Search } from "lucide-react";
 type Props = ComponentProps<"main">;
 export const Main = ({ className, ...props }: Props) => {
   const [country, setCountry] = useState<string>("");
@@ -29,7 +29,9 @@ export const Main = ({ className, ...props }: Props) => {
     <main {...props} className={`${className}`}>
       <div className="flex flex-col gap-5 h-14 sm:flex-row sm:justify-between sm:gap-3">
         <div className="relative min-h-full">
-          <Search className="absolute left-5 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+          <Search
+            className="absolute left-5 top-5 size-5 text-gray-400"
+          />
           <Input
             value={country}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
