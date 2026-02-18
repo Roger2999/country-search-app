@@ -1,4 +1,4 @@
-import type { Countries } from "@/types/countiesResponse";
+import type { Countries } from "@/types/countriesResponse";
 
 export const getCountries = async (): Promise<Countries[]> => {
   const response = await fetch(

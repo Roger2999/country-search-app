@@ -29,9 +29,7 @@ export const Main = ({ className, ...props }: Props) => {
     <main {...props} className={`${className}`}>
       <div className="flex flex-col gap-5 h-14 sm:flex-row sm:justify-between sm:gap-3">
         <div className="relative min-h-full">
-          <Search
-            className="absolute left-5 top-5 size-5 text-gray-400"
-          />
+          <Search className="absolute left-5 top-5 size-5 text-gray-400" />
           <Input
             value={country}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
