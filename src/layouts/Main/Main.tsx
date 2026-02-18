@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/Input";
 import { useState, type ComponentProps } from "react";
 import style from "./Main.module.css";
+import { Search } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -14,24 +15,21 @@ type Props = ComponentProps<"main">;
 export const Main = ({ className, ...props }: Props) => {
   const [country, setCountry] = useState<string>("");
   const [region, setRegion] = useState<string>("all");
-  const { data: countriesData } = useAllCountries(country);
-  console.log(region);
-
+  const { data: countriesData } = useAllCountries();
   const regions = [...new Set(countriesData?.map((c) => c.region))];
   const filtratedData = countriesData?.filter((c) => {
-    const matchesCountry = c.name?.common.toLowerCase().includes(country.toLowerCase());
-    const matchesRegion = region === "all" || c.region.toLowerCase() === region.toLowerCase();
+    const matchesCountry = c.name?.common
+      .toLowerCase()
+      .includes(country.toLowerCase());
+    const matchesRegion =
+      region === "all" || c.region.toLowerCase() === region.toLowerCase();
     return matchesCountry && matchesRegion;
   });
   return (
     <main {...props} className={`${className}`}>
       <div className="flex flex-col gap-5 h-14 sm:flex-row sm:justify-between sm:gap-3">
         <div className="relative min-h-full">
-          <img
-            src="/vite.svg"
-            alt=""
-            className="absolute left-5 top-5 size-5"
-          />
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
           <Input
             value={country}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -52,7 +50,9 @@ export const Main = ({ className, ...props }: Props) => {
           >
             <SelectItem value={"all"}>All</SelectItem>
             {regions.map((r) => (
-              <SelectItem key={r} value={r}>{r}</SelectItem>
+              <SelectItem key={r} value={r}>
+                {r}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -60,6 +60,7 @@ export const Main = ({ className, ...props }: Props) => {
       <div className={`${style.girdContainer}`}>
         {filtratedData?.map((c) => (
           <CountryCard
+            key={c.name.official}
             flagImg={c.flags.svg}
             countryName={c.name.common}
             population={c.population}
