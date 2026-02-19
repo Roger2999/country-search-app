@@ -1,40 +1,26 @@
-import type { Countries } from "@/types/countriesResponse";
+import type { Country } from "@/types/countriesResponse";
 import { Button } from "./ui/Button";
 import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 
 interface Props {
-  selectedCountry: Countries | null;
+  selectedCountry: Country | null;
   onClose: () => void;
 }
 
 export const CountryModal = ({ selectedCountry, onClose }: Props) => {
+  useEffect(() => {
+    if (selectedCountry) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedCountry]);
   if (!selectedCountry) return null;
-
-  const getNativeName = () => {
-    if (!selectedCountry.name.nativeName) return selectedCountry.name.common;
-    const keys = Object.keys(selectedCountry.name.nativeName);
-    if (keys.length === 0) return selectedCountry.name.common;
-    const firstKey = keys[0];
-    return selectedCountry.name.nativeName[firstKey as keyof typeof selectedCountry.name.nativeName]?.common || selectedCountry.name.common;
-  };
-
-  const getCurrencies = () => {
-    if (!selectedCountry.currencies) return "?";
-    return Object.values(selectedCountry.currencies)
-      .map((c) => c.name)
-      .join(", ");
-  };
-
-  const getLanguages = () => {
-    if (!selectedCountry.languages) return "?";
-    return Object.values(selectedCountry.languages).join(", ");
-  };
-
-  const getTopLevelDomain = () => {
-    if (!selectedCountry.tld || selectedCountry.tld.length === 0) return "?";
-    return selectedCountry.tld.join(", ");
-  };
-
   return (
     <div className="modal bg-background fixed z-20 flex min-h-dvh w-dvw flex-col gap-16 px-20 py-12">
       <div className="w-fit">
@@ -65,11 +51,11 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
             <div className="flex flex-col gap-3">
               <p>
                 <span className="font-semibold">Native Name:</span>{" "}
-                {getNativeName()}
+                {selectedCountry.name.common}
               </p>
               <p>
                 <span className="font-semibold">Population:</span>{" "}
-                {selectedCountry.population?.toLocaleString()}
+                {selectedCountry.population}
               </p>
               <p>
                 <span className="font-semibold">Region:</span>{" "}
@@ -77,26 +63,24 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
               </p>
               <p>
                 <span className="font-semibold">Sub Region:</span>{" "}
-                {selectedCountry.subregion || "?"}
+                {selectedCountry.region}
               </p>
               <p>
                 <span className="font-semibold">Capital:</span>{" "}
-                {selectedCountry.capital?.join(", ") || "?"}
+                {selectedCountry.capital?.map((c) => c).join(", ")}
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
               <p>
-                <span className="font-semibold">Top Level Domain:</span>{" "}
-                {getTopLevelDomain()}
+                <span className="font-semibold">Top Level Domain:</span>
+                {selectedCountry.tld}
               </p>
               <p>
-                <span className="font-semibold">Currencies:</span>{" "}
-                {getCurrencies()}
+                <span className="font-semibold">Currencies:</span> Euro
               </p>
               <p>
-                <span className="font-semibold">Languages:</span>{" "}
-                {getLanguages()}
+                <span className="font-semibold">Languages:</span> Dutch, French
               </p>
             </div>
           </div>

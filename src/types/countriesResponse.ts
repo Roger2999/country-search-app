@@ -1,20 +1,14 @@
-export interface Countries {
+export interface Country {
   flags: Flags;
   name: Name;
+  tld: string[];
   cca2: string;
+  currencies: Currencies;
   capital: string[];
   region: string;
-  subregion?: string;
+  subregion: string;
+  languages: Languages;
   population: number;
-  tld?: string[];
-  currencies?: Record<string, Currency>;
-  languages?: Record<string, string>;
-  borders?: string[];
-}
-
-export interface Currency {
-  name: string;
-  symbol: string;
 }
 
 export interface Flags {
@@ -948,4 +942,1136 @@ export interface Isl {
 export interface Nep {
   official: string;
   common: string;
+}
+
+export interface Currencies {
+  EUR?: Eur;
+  KMF?: Kmf;
+  USD?: Usd;
+  TZS?: Tzs;
+  MKD?: Mkd2;
+  SAR?: Sar;
+  AUD?: Aud;
+  KPW?: Kpw;
+  NOK?: Nok;
+  XAF?: Xaf;
+  ZMW?: Zmw;
+  JMD?: Jmd;
+  PHP?: Php;
+  CLP?: Clp;
+  OMR?: Omr;
+  AMD?: Amd;
+  PKR?: Pkr;
+  NZD?: Nzd;
+  XOF?: Xof;
+  CRC?: Crc;
+  GBP?: Gbp;
+  GGP?: Ggp;
+  SRD?: Srd;
+  HUF?: Huf;
+  UZS?: Uzs;
+  ERN?: Ern;
+  SLE?: Sle;
+  KWD?: Kwd;
+  BTN?: Btn;
+  INR?: Inr;
+  BMD?: Bmd;
+  PLN?: Pln;
+  CHF?: Chf;
+  KHR?: Khr;
+  XCD?: Xcd;
+  GNF?: Gnf;
+  SDG?: Sdg;
+  DJF?: Djf;
+  DKK?: Dkk;
+  SEK?: Sek;
+  VES?: Ves;
+  LYD?: Lyd;
+  GTQ?: Gtq;
+  AED?: Aed;
+  LAK?: Lak;
+  BDT?: Bdt;
+  TVD?: Tvd;
+  ALL?: All;
+  SZL?: Szl;
+  ZAR?: Zar;
+  YER?: Yer;
+  AOA?: Aoa;
+  RWF?: Rwf;
+  CDF?: Cdf;
+  TTD?: Ttd;
+  UAH?: Uah;
+  BHD?: Bhd;
+  HKD?: Hkd;
+  BBD?: Bbd;
+  ILS?: Ils;
+  STN?: Stn;
+  RON?: Ron2;
+  TOP?: Top;
+  GMD?: Gmd;
+  TWD?: Twd;
+  IQD?: Iqd;
+  CUC?: Cuc;
+  CUP?: Cup;
+  ETB?: Etb;
+  MGA?: Mga;
+  BAM?: Bam;
+  GEL?: Gel;
+  XPF?: Xpf;
+  HNL?: Hnl;
+  AFN?: Afn;
+  ANG?: Ang;
+  HTG?: Htg;
+  NAD?: Nad;
+  THB?: Thb;
+  KZT?: Kzt;
+  UYU?: Uyu;
+  BRL?: Brl;
+  MNT?: Mnt;
+  GYD?: Gyd;
+  PAB?: Pab;
+  JEP?: Jep;
+  PEN?: Pen;
+  IDR?: Idr;
+  MDL?: Mdl;
+  SYP?: Syp;
+  SGD?: Sgd;
+  KYD?: Kyd;
+  EGP?: Egp;
+  MVR?: Mvr;
+  JOD?: Jod;
+  SOS?: Sos;
+  AZN?: Azn;
+  MZN?: Mzn;
+  CVE?: Cve;
+  CAD?: Cad;
+  IMP?: Imp;
+  GIP?: Gip;
+  KRW?: Krw;
+  NIO?: Nio;
+  BGN?: Bgn;
+  COP?: Cop;
+  DZD?: Dzd;
+  MAD?: Mad;
+  MRU?: Mru;
+  SHP?: Shp;
+  TRY?: Try;
+  BZD?: Bzd;
+  GHS?: Ghs;
+  UGX?: Ugx;
+  RSD?: Rsd;
+  MYR?: Myr;
+  FKP?: Fkp;
+  DOP?: Dop;
+  ARS?: Ars;
+  RUB?: Rub;
+  VUV?: Vuv;
+  MXN?: Mxn;
+  BND?: Bnd;
+  MUR?: Mur;
+  BYN?: Byn;
+  TMT?: Tmt;
+  PYG?: Pyg;
+  CZK?: Czk;
+  LKR?: Lkr;
+  NGN?: Ngn;
+  KGS?: Kgs;
+  TND?: Tnd;
+  KID?: Kid;
+  FJD?: Fjd;
+  CNY?: Cny;
+  SCR?: Scr;
+  CKD?: Ckd;
+  PGK?: Pgk;
+  ZWL?: Zwl;
+  FOK?: Fok;
+  LSL?: Lsl;
+  AWG?: Awg;
+  BIF?: Bif;
+  TJS?: Tjs;
+  MMK?: Mmk;
+  JPY?: Jpy;
+  SSP?: Ssp;
+  LRD?: Lrd;
+  BOB?: Bob;
+  WST?: Wst;
+  VND?: Vnd;
+  IRR?: Irr;
+  LBP?: Lbp;
+  MOP?: Mop;
+  SBD?: Sbd;
+  MWK?: Mwk;
+  QAR?: Qar;
+  BWP?: Bwp;
+  ISK?: Isk;
+  KES?: Kes;
+  BSD?: Bsd;
+  NPR?: Npr;
+}
+
+export interface Eur {
+  name: string;
+  symbol: string;
+}
+
+export interface Kmf {
+  name: string;
+  symbol: string;
+}
+
+export interface Usd {
+  name: string;
+  symbol: string;
+}
+
+export interface Tzs {
+  name: string;
+  symbol: string;
+}
+
+export interface Mkd2 {
+  name: string;
+  symbol: string;
+}
+
+export interface Sar {
+  name: string;
+  symbol: string;
+}
+
+export interface Aud {
+  name: string;
+  symbol: string;
+}
+
+export interface Kpw {
+  name: string;
+  symbol: string;
+}
+
+export interface Nok {
+  name: string;
+  symbol: string;
+}
+
+export interface Xaf {
+  name: string;
+  symbol: string;
+}
+
+export interface Zmw {
+  name: string;
+  symbol: string;
+}
+
+export interface Jmd {
+  name: string;
+  symbol: string;
+}
+
+export interface Php {
+  name: string;
+  symbol: string;
+}
+
+export interface Clp {
+  name: string;
+  symbol: string;
+}
+
+export interface Omr {
+  name: string;
+  symbol: string;
+}
+
+export interface Amd {
+  name: string;
+  symbol: string;
+}
+
+export interface Pkr {
+  name: string;
+  symbol: string;
+}
+
+export interface Nzd {
+  name: string;
+  symbol: string;
+}
+
+export interface Xof {
+  name: string;
+  symbol: string;
+}
+
+export interface Crc {
+  name: string;
+  symbol: string;
+}
+
+export interface Gbp {
+  name: string;
+  symbol: string;
+}
+
+export interface Ggp {
+  name: string;
+  symbol: string;
+}
+
+export interface Srd {
+  name: string;
+  symbol: string;
+}
+
+export interface Huf {
+  name: string;
+  symbol: string;
+}
+
+export interface Uzs {
+  name: string;
+  symbol: string;
+}
+
+export interface Ern {
+  name: string;
+  symbol: string;
+}
+
+export interface Sle {
+  name: string;
+  symbol: string;
+}
+
+export interface Kwd {
+  name: string;
+  symbol: string;
+}
+
+export interface Btn {
+  name: string;
+  symbol: string;
+}
+
+export interface Inr {
+  name: string;
+  symbol: string;
+}
+
+export interface Bmd {
+  name: string;
+  symbol: string;
+}
+
+export interface Pln {
+  name: string;
+  symbol: string;
+}
+
+export interface Chf {
+  name: string;
+  symbol: string;
+}
+
+export interface Khr {
+  name: string;
+  symbol: string;
+}
+
+export interface Xcd {
+  name: string;
+  symbol: string;
+}
+
+export interface Gnf {
+  name: string;
+  symbol: string;
+}
+
+export interface Sdg {
+  name: string;
+  symbol: string;
+}
+
+export interface Djf {
+  name: string;
+  symbol: string;
+}
+
+export interface Dkk {
+  name: string;
+  symbol: string;
+}
+
+export interface Sek {
+  name: string;
+  symbol: string;
+}
+
+export interface Ves {
+  name: string;
+  symbol: string;
+}
+
+export interface Lyd {
+  name: string;
+  symbol: string;
+}
+
+export interface Gtq {
+  name: string;
+  symbol: string;
+}
+
+export interface Aed {
+  name: string;
+  symbol: string;
+}
+
+export interface Lak {
+  name: string;
+  symbol: string;
+}
+
+export interface Bdt {
+  name: string;
+  symbol: string;
+}
+
+export interface Tvd {
+  name: string;
+  symbol: string;
+}
+
+export interface All {
+  name: string;
+  symbol: string;
+}
+
+export interface Szl {
+  name: string;
+  symbol: string;
+}
+
+export interface Zar {
+  name: string;
+  symbol: string;
+}
+
+export interface Yer {
+  name: string;
+  symbol: string;
+}
+
+export interface Aoa {
+  name: string;
+  symbol: string;
+}
+
+export interface Rwf {
+  name: string;
+  symbol: string;
+}
+
+export interface Cdf {
+  name: string;
+  symbol: string;
+}
+
+export interface Ttd {
+  name: string;
+  symbol: string;
+}
+
+export interface Uah {
+  name: string;
+  symbol: string;
+}
+
+export interface Bhd {
+  name: string;
+  symbol: string;
+}
+
+export interface Hkd {
+  name: string;
+  symbol: string;
+}
+
+export interface Bbd {
+  name: string;
+  symbol: string;
+}
+
+export interface Ils {
+  name: string;
+  symbol: string;
+}
+
+export interface Stn {
+  name: string;
+  symbol: string;
+}
+
+export interface Ron2 {
+  name: string;
+  symbol: string;
+}
+
+export interface Top {
+  name: string;
+  symbol: string;
+}
+
+export interface Gmd {
+  name: string;
+  symbol: string;
+}
+
+export interface Twd {
+  name: string;
+  symbol: string;
+}
+
+export interface Iqd {
+  name: string;
+  symbol: string;
+}
+
+export interface Cuc {
+  name: string;
+  symbol: string;
+}
+
+export interface Cup {
+  name: string;
+  symbol: string;
+}
+
+export interface Etb {
+  name: string;
+  symbol: string;
+}
+
+export interface Mga {
+  name: string;
+  symbol: string;
+}
+
+export interface Bam {
+  name: string;
+  symbol: string;
+}
+
+export interface Gel {
+  name: string;
+  symbol: string;
+}
+
+export interface Xpf {
+  name: string;
+  symbol: string;
+}
+
+export interface Hnl {
+  name: string;
+  symbol: string;
+}
+
+export interface Afn {
+  name: string;
+  symbol: string;
+}
+
+export interface Ang {
+  name: string;
+  symbol: string;
+}
+
+export interface Htg {
+  name: string;
+  symbol: string;
+}
+
+export interface Nad {
+  name: string;
+  symbol: string;
+}
+
+export interface Thb {
+  name: string;
+  symbol: string;
+}
+
+export interface Kzt {
+  name: string;
+  symbol: string;
+}
+
+export interface Uyu {
+  name: string;
+  symbol: string;
+}
+
+export interface Brl {
+  name: string;
+  symbol: string;
+}
+
+export interface Mnt {
+  name: string;
+  symbol: string;
+}
+
+export interface Gyd {
+  name: string;
+  symbol: string;
+}
+
+export interface Pab {
+  name: string;
+  symbol: string;
+}
+
+export interface Jep {
+  name: string;
+  symbol: string;
+}
+
+export interface Pen {
+  name: string;
+  symbol: string;
+}
+
+export interface Idr {
+  name: string;
+  symbol: string;
+}
+
+export interface Mdl {
+  name: string;
+  symbol: string;
+}
+
+export interface Syp {
+  name: string;
+  symbol: string;
+}
+
+export interface Sgd {
+  name: string;
+  symbol: string;
+}
+
+export interface Kyd {
+  name: string;
+  symbol: string;
+}
+
+export interface Egp {
+  name: string;
+  symbol: string;
+}
+
+export interface Mvr {
+  name: string;
+  symbol: string;
+}
+
+export interface Jod {
+  name: string;
+  symbol: string;
+}
+
+export interface Sos {
+  name: string;
+  symbol: string;
+}
+
+export interface Azn {
+  name: string;
+  symbol: string;
+}
+
+export interface Mzn {
+  name: string;
+  symbol: string;
+}
+
+export interface Cve {
+  name: string;
+  symbol: string;
+}
+
+export interface Cad {
+  name: string;
+  symbol: string;
+}
+
+export interface Imp {
+  name: string;
+  symbol: string;
+}
+
+export interface Gip {
+  name: string;
+  symbol: string;
+}
+
+export interface Krw {
+  name: string;
+  symbol: string;
+}
+
+export interface Nio {
+  name: string;
+  symbol: string;
+}
+
+export interface Bgn {
+  name: string;
+  symbol: string;
+}
+
+export interface Cop {
+  name: string;
+  symbol: string;
+}
+
+export interface Dzd {
+  name: string;
+  symbol: string;
+}
+
+export interface Mad {
+  name: string;
+  symbol: string;
+}
+
+export interface Mru {
+  name: string;
+  symbol: string;
+}
+
+export interface Shp {
+  name: string;
+  symbol: string;
+}
+
+export interface Try {
+  name: string;
+  symbol: string;
+}
+
+export interface Bzd {
+  name: string;
+  symbol: string;
+}
+
+export interface Ghs {
+  name: string;
+  symbol: string;
+}
+
+export interface Ugx {
+  name: string;
+  symbol: string;
+}
+
+export interface Rsd {
+  name: string;
+  symbol: string;
+}
+
+export interface Myr {
+  name: string;
+  symbol: string;
+}
+
+export interface Fkp {
+  name: string;
+  symbol: string;
+}
+
+export interface Dop {
+  name: string;
+  symbol: string;
+}
+
+export interface Ars {
+  name: string;
+  symbol: string;
+}
+
+export interface Rub {
+  name: string;
+  symbol: string;
+}
+
+export interface Vuv {
+  name: string;
+  symbol: string;
+}
+
+export interface Mxn {
+  name: string;
+  symbol: string;
+}
+
+export interface Bnd {
+  name: string;
+  symbol: string;
+}
+
+export interface Mur {
+  name: string;
+  symbol: string;
+}
+
+export interface Byn {
+  name: string;
+  symbol: string;
+}
+
+export interface Tmt {
+  name: string;
+  symbol: string;
+}
+
+export interface Pyg {
+  name: string;
+  symbol: string;
+}
+
+export interface Czk {
+  name: string;
+  symbol: string;
+}
+
+export interface Lkr {
+  name: string;
+  symbol: string;
+}
+
+export interface Ngn {
+  name: string;
+  symbol: string;
+}
+
+export interface Kgs {
+  name: string;
+  symbol: string;
+}
+
+export interface Tnd {
+  name: string;
+  symbol: string;
+}
+
+export interface Kid {
+  name: string;
+  symbol: string;
+}
+
+export interface Fjd {
+  name: string;
+  symbol: string;
+}
+
+export interface Cny {
+  name: string;
+  symbol: string;
+}
+
+export interface Scr {
+  name: string;
+  symbol: string;
+}
+
+export interface Ckd {
+  name: string;
+  symbol: string;
+}
+
+export interface Pgk {
+  name: string;
+  symbol: string;
+}
+
+export interface Zwl {
+  name: string;
+  symbol: string;
+}
+
+export interface Fok {
+  name: string;
+  symbol: string;
+}
+
+export interface Lsl {
+  name: string;
+  symbol: string;
+}
+
+export interface Awg {
+  name: string;
+  symbol: string;
+}
+
+export interface Bif {
+  name: string;
+  symbol: string;
+}
+
+export interface Tjs {
+  name: string;
+  symbol: string;
+}
+
+export interface Mmk {
+  name: string;
+  symbol: string;
+}
+
+export interface Jpy {
+  name: string;
+  symbol: string;
+}
+
+export interface Ssp {
+  name: string;
+  symbol: string;
+}
+
+export interface Lrd {
+  name: string;
+  symbol: string;
+}
+
+export interface Bob {
+  name: string;
+  symbol: string;
+}
+
+export interface Wst {
+  name: string;
+  symbol: string;
+}
+
+export interface Vnd {
+  name: string;
+  symbol: string;
+}
+
+export interface Irr {
+  name: string;
+  symbol: string;
+}
+
+export interface Lbp {
+  name: string;
+  symbol: string;
+}
+
+export interface Mop {
+  name: string;
+  symbol: string;
+}
+
+export interface Sbd {
+  name: string;
+  symbol: string;
+}
+
+export interface Mwk {
+  name: string;
+  symbol: string;
+}
+
+export interface Qar {
+  name: string;
+  symbol: string;
+}
+
+export interface Bwp {
+  name: string;
+  symbol: string;
+}
+
+export interface Isk {
+  name: string;
+  symbol: string;
+}
+
+export interface Kes {
+  name: string;
+  symbol: string;
+}
+
+export interface Bsd {
+  name: string;
+  symbol: string;
+}
+
+export interface Npr {
+  name: string;
+  symbol: string;
+}
+
+export interface Languages {
+  ita?: string;
+  lat?: string;
+  deu?: string;
+  fra?: string;
+  nld?: string;
+  ara?: string;
+  zdj?: string;
+  eng?: string;
+  spa?: string;
+  nor?: string;
+  swa?: string;
+  mkd?: string;
+  slk?: string;
+  kor?: string;
+  sag?: string;
+  jam?: string;
+  fil?: string;
+  cnr?: string;
+  hye?: string;
+  urd?: string;
+  smo?: string;
+  tkl?: string;
+  nfr?: string;
+  hun?: string;
+  rus?: string;
+  uzb?: string;
+  tir?: string;
+  dzo?: string;
+  ell?: string;
+  tur?: string;
+  pol?: string;
+  khm?: string;
+  hin?: string;
+  tam?: string;
+  por?: string;
+  dan?: string;
+  swe?: string;
+  pap?: string;
+  lao?: string;
+  ben?: string;
+  tvl?: string;
+  sqi?: string;
+  ssw?: string;
+  kin?: string;
+  kon?: string;
+  lin?: string;
+  lua?: string;
+  ukr?: string;
+  lit?: string;
+  zho?: string;
+  heb?: string;
+  ron?: string;
+  cha?: string;
+  ton?: string;
+  pih?: string;
+  arc?: string;
+  ckb?: string;
+  mri?: string;
+  nzs?: string;
+  amh?: string;
+  mlt?: string;
+  mlg?: string;
+  bos?: string;
+  hrv?: string;
+  srp?: string;
+  kat?: string;
+  est?: string;
+  prs?: string;
+  pus?: string;
+  tuk?: string;
+  hat?: string;
+  afr?: string;
+  her?: string;
+  hgm?: string;
+  kwn?: string;
+  loz?: string;
+  ndo?: string;
+  tsn?: string;
+  pov?: string;
+  tha?: string;
+  kaz?: string;
+  mon?: string;
+  lav?: string;
+  nrf?: string;
+  aym?: string;
+  que?: string;
+  ind?: string;
+  msa?: string;
+  div?: string;
+  tet?: string;
+  som?: string;
+  aze?: string;
+  glv?: string;
+  bul?: string;
+  ltz?: string;
+  ber?: string;
+  mey?: string;
+  bjz?: string;
+  niu?: string;
+  gle?: string;
+  grn?: string;
+  bis?: string;
+  mfe?: string;
+  bel?: string;
+  ces?: string;
+  sin?: string;
+  pau?: string;
+  kir?: string;
+  gil?: string;
+  fij?: string;
+  hif?: string;
+  cat?: string;
+  mah?: string;
+  crs?: string;
+  nbl?: string;
+  nso?: string;
+  sot?: string;
+  tso?: string;
+  ven?: string;
+  xho?: string;
+  zul?: string;
+  rar?: string;
+  eus?: string;
+  glc?: string;
+  kal?: string;
+  hmo?: string;
+  tpi?: string;
+  nno?: string;
+  nob?: string;
+  smi?: string;
+  gsw?: string;
+  roh?: string;
+  bwg?: string;
+  kck?: string;
+  khi?: string;
+  ndc?: string;
+  nde?: string;
+  nya?: string;
+  sna?: string;
+  toi?: string;
+  zib?: string;
+  slv?: string;
+  fao?: string;
+  run?: string;
+  fin?: string;
+  tgk?: string;
+  mya?: string;
+  jpn?: string;
+  vie?: string;
+  fas?: string;
+  nau?: string;
+  cal?: string;
+  isl?: string;
+  nep?: string;
 }

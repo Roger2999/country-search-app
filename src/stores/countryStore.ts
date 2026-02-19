@@ -1,17 +1,17 @@
-import type { Countries } from "@/types/countriesResponse";
+import type { Country } from "@/types/countriesResponse";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface CountryState {
-  selectedCountry: Countries | null;
-  setSelectedCountry: (country: Countries | null) => void;
+  selectedCountry: Country | null;
+  setSelectedCountry: (country: Country | null) => void;
 }
 
 export const countryStore = create(
   persist<CountryState>(
     (set) => ({
       selectedCountry: null,
-      setSelectedCountry: (country: Countries | null) =>
+      setSelectedCountry: (country: Country | null) =>
         set({ selectedCountry: country }),
     }),
     {
