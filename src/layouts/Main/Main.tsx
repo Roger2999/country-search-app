@@ -31,20 +31,20 @@ export const Main = ({ className, ...props }: Props) => {
 
   return (
     <main {...props} className={`${className}`}>
-      <div className="flex flex-col gap-5 h-14 sm:flex-row sm:justify-between sm:gap-3">
+      <div className="flex h-14 flex-col gap-5 sm:flex-row sm:justify-between sm:gap-3">
         <div className="relative min-h-full">
-          <Search className="absolute left-5 top-5 size-5 text-gray-400" />
+          <Search className="absolute top-5 left-5 size-5 text-gray-400" />
           <Input
             value={country}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setCountry(e.target.value)
             }
-            className="w-100 max-w-full min-h-full pl-14 bg-input"
+            className="bg-input min-h-full w-100 max-w-full pl-14"
             placeholder="Search for a country..."
           />
         </div>
         <Select value={region} onValueChange={setRegion}>
-          <SelectTrigger className="w-full max-w-48 min-h-full pl-6 bg-select">
+          <SelectTrigger className="bg-select min-h-full w-full max-w-48 pl-6">
             <SelectValue placeholder="Filter by Region" />
           </SelectTrigger>
           <SelectContent
@@ -63,7 +63,7 @@ export const Main = ({ className, ...props }: Props) => {
       </div>
       <div className={`${style.girdContainer}`}>
         {isLoading && (
-          <p className="mt-20 w-fit m-auto font-semibold text-4xl">
+          <p className="m-auto mt-20 w-fit text-4xl font-semibold">
             Loading...
           </p>
         )}
@@ -76,7 +76,7 @@ export const Main = ({ className, ...props }: Props) => {
                 key={c.name.official}
                 type="button"
                 onClick={() => setSelectedCountry(c)}
-                className="transition all duration-400 ease hover:scale-105 hover:cursor-pointer"
+                className="all ease transition duration-400 hover:scale-105 hover:cursor-pointer"
               >
                 <CountryCard
                   flagImg={c.flags.svg}

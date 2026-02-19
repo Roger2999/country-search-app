@@ -11,12 +11,12 @@ export const App = () => {
   };
   return (
     <div className="app-container flex flex-col w-full min-h-dvh">
-      <Header></Header>
+      <Header />
       <CountryModal
         selectedCountry={selectedCountry}
         onClose={handleCloseModal}
       />
-      <Main className="flex flex-col gap-28 sm:gap-10 flex-1 px-10 sm:px-14 py-10"></Main>
+      <Main className="flex flex-col gap-28 sm:gap-10 flex-1 px-10 sm:px-14 py-10" />
     </div>
   );
 };

@@ -13,17 +13,17 @@ export const CountryCard = ({
   capital,
 }: Props) => {
   return (
-    <div className="card-container flex flex-col min-w-full max-w-[80%] min-h-full bg-gray-500">
-      <div className="w-full h-40 bg-gray-900">
+    <div className="card-container flex min-h-full max-w-[80%] min-w-full flex-col">
+      <div className="h-40 w-full">
         <img
-          className="w-full h-full object-cover object-center"
+          className="h-full w-full object-cover object-center"
           width={20}
           height={20}
           src={flagImg}
           alt={`${countryName}-flag`}
         />
       </div>
-      <div className="flex-1 flex flex-col flex-wrap bg-gray-600 p-5">
+      <div className="bg-background-secondary flex flex-1 flex-col flex-wrap p-5">
         <p>{countryName ? countryName : "?"}</p>
         <p>Population: {population ? population : "?"}</p>
         <p>Region: {region ? region : "?"}</p>
