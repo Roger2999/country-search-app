@@ -76,22 +76,20 @@ export const Main = ({ className, ...props }: Props) => {
         {filtratedData &&
           filtratedData.length &&
           filtratedData?.map((c) => (
-            <>
-              <button
-                key={c.name.official}
-                type="button"
-                onClick={() => setSelectedCountry(c)}
-                className="all ease transition duration-400 hover:scale-105 hover:cursor-pointer"
-              >
-                <CountryCard
-                  flagImg={c.flags.svg}
-                  countryName={c.name.common}
-                  population={c.population}
-                  region={c.region}
-                  capital={c.capital.map((c) => c)}
-                ></CountryCard>
-              </button>
-            </>
+            <button
+              key={c.name.official}
+              type="button"
+              onClick={() => setSelectedCountry(c)}
+              className="all ease transition duration-400 hover:scale-105 hover:cursor-pointer"
+            >
+              <CountryCard
+                flagImg={c.flags.svg}
+                countryName={c.name.common}
+                population={c.population}
+                region={c.region}
+                capital={c.capital.map((c) => c)}
+              ></CountryCard>
+            </button>
           ))}
       </div>
     </main>

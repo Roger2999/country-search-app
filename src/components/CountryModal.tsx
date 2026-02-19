@@ -15,17 +15,39 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
     } else {
       document.body.style.overflow = "";
     }
-
     return () => {
       document.body.style.overflow = "";
     };
   }, [selectedCountry]);
+
+  const currencies =
+    selectedCountry?.currencies &&
+    Object.values(selectedCountry.currencies)
+      .map((c) => c.name)
+      .join(", ");
+
+  const languages =
+    selectedCountry?.languages &&
+    Object.values(selectedCountry.languages).join(", ");
+
+  const nativeName =
+    selectedCountry?.name?.nativeName &&
+    Object.values(selectedCountry.name.nativeName)[0]?.common;
+
+  const population = selectedCountry?.population?.toLocaleString();
+  const region = selectedCountry?.region;
+  const subregion = selectedCountry?.subregion;
+  const capital = selectedCountry?.capital?.join(", ");
+  const topLevelDomain = selectedCountry?.tld?.join(", ");
+
   if (!selectedCountry) return null;
+
   return (
     <div className="modal bg-background fixed z-20 flex min-h-dvh w-dvw flex-col gap-16 px-20 py-12">
       <div className="w-fit">
         <Button
-          className="flex cursor-pointer items-center gap-2 px-8"
+          size={"lg"}
+          className="bg-background-secondary text-foreground border-foreground/20 flex cursor-pointer items-center gap-2 border px-8"
           onClick={onClose}
         >
           <ArrowLeft className="h-4 w-4" />
@@ -51,36 +73,37 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
             <div className="flex flex-col gap-3">
               <p>
                 <span className="font-semibold">Native Name:</span>{" "}
-                {selectedCountry.name.common}
+                {nativeName || "N/A"}
               </p>
               <p>
                 <span className="font-semibold">Population:</span>{" "}
-                {selectedCountry.population}
+                {population || "N/A"}
               </p>
               <p>
-                <span className="font-semibold">Region:</span>{" "}
-                {selectedCountry.region}
+                <span className="font-semibold">Region:</span> {region || "N/A"}
               </p>
               <p>
                 <span className="font-semibold">Sub Region:</span>{" "}
-                {selectedCountry.region}
+                {subregion || "N/A"}
               </p>
               <p>
                 <span className="font-semibold">Capital:</span>{" "}
-                {selectedCountry.capital?.map((c) => c).join(", ")}
+                {capital || "N/A"}
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
               <p>
-                <span className="font-semibold">Top Level Domain:</span>
-                {selectedCountry.tld}
+                <span className="font-semibold">Top Level Domain:</span>{" "}
+                {topLevelDomain || "N/A"}
               </p>
               <p>
-                <span className="font-semibold">Currencies:</span> Euro
+                <span className="font-semibold">Currencies:</span>{" "}
+                {currencies || "N/A"}
               </p>
               <p>
-                <span className="font-semibold">Languages:</span> Dutch, French
+                <span className="font-semibold">Languages:</span>{" "}
+                {languages || "N/A"}
               </p>
             </div>
           </div>

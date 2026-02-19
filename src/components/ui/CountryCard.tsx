@@ -23,8 +23,10 @@ export const CountryCard = ({
           alt={`${countryName}-flag`}
         />
       </div>
-      <div className="bg-background-secondary flex flex-1 flex-col flex-wrap p-5">
-        <p>{countryName ? countryName : "?"}</p>
+      <div className="bg-background-secondary flex flex-1 flex-col flex-wrap items-start gap-2 px-10 py-5">
+        <p className="mb-2 text-xl font-bold">
+          {countryName ? countryName : "?"}
+        </p>
         <p>Population: {population ? population : "?"}</p>
         <p>Region: {region ? region : "?"}</p>
         <p>Capital: {capital ? capital : "?"}</p>
