@@ -13,17 +13,19 @@ import { CountryCard } from "@/components/ui/CountryCard";
 import { Search } from "lucide-react";
 
 import { countryStore } from "@/stores/countryStore";
+import { useDebounce } from "@/hooks/useDebounce";
 type Props = ComponentProps<"main">;
 export const Main = ({ className, ...props }: Props) => {
   const [country, setCountry] = useState<string>("");
   const [region, setRegion] = useState<string>("all");
+  const { debounceCountry } = useDebounce(country, 600);
   const setSelectedCountry = countryStore((state) => state.setSelectedCountry);
   const { data: countriesData, isLoading, isError, error } = useAllCountries();
   const regions = [...new Set(countriesData?.map((c) => c.region))];
   const filtratedData = countriesData?.filter((c) => {
     const matchesCountry = c.name?.common
       .toLowerCase()
-      .includes(country.toLowerCase());
+      .includes(debounceCountry.toLowerCase());
     const matchesRegion =
       region === "all" || c.region.toLowerCase() === region.toLowerCase();
     return matchesCountry && matchesRegion;
