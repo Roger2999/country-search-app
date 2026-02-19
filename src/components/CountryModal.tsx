@@ -11,11 +11,11 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
   if (!selectedCountry) return null;
 
   const getNativeName = () => {
-    if (!selectedCountry.name.nativeName) return "?";
+    if (!selectedCountry.name.nativeName) return selectedCountry.name.common;
     const keys = Object.keys(selectedCountry.name.nativeName);
-    if (keys.length === 0) return "?";
+    if (keys.length === 0) return selectedCountry.name.common;
     const firstKey = keys[0];
-    return selectedCountry.name.nativeName[firstKey as keyof typeof selectedCountry.name.nativeName]?.common || "?";
+    return selectedCountry.name.nativeName[firstKey as keyof typeof selectedCountry.name.nativeName]?.common || selectedCountry.name.common;
   };
 
   const getCurrencies = () => {
@@ -48,11 +48,11 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
       </div>
 
       <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-24">
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <img
             src={selectedCountry.flags.svg}
             alt={`${selectedCountry.name.common} flag`}
-            className="h-auto w-full max-w-[560px] object-cover shadow-lg"
+            className="h-auto w-full max-w-140 object-cover shadow-lg"
           />
         </div>
 
@@ -69,11 +69,11 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
               </p>
               <p>
                 <span className="font-semibold">Population:</span>{" "}
-                {selectedCountry.population?.toLocaleString() || "?"}
+                {selectedCountry.population?.toLocaleString()}
               </p>
               <p>
                 <span className="font-semibold">Region:</span>{" "}
-                {selectedCountry.region || "?"}
+                {selectedCountry.region}
               </p>
               <p>
                 <span className="font-semibold">Sub Region:</span>{" "}
@@ -81,7 +81,7 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
               </p>
               <p>
                 <span className="font-semibold">Capital:</span>{" "}
-                {selectedCountry.capital?.[0] || "?"}
+                {selectedCountry.capital?.join(", ") || "?"}
               </p>
             </div>
 
@@ -100,22 +100,6 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
               </p>
             </div>
           </div>
-
-          {selectedCountry.borders && selectedCountry.borders.length > 0 && (
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-semibold">Border Countries:</span>
-              <div className="flex flex-wrap gap-2">
-                {selectedCountry.borders.map((border) => (
-                  <span
-                    key={border}
-                    className="bg-background-secondary rounded px-4 py-1 text-sm shadow"
-                  >
-                    {border}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
