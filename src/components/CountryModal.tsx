@@ -8,7 +8,7 @@ interface Props {
 export const CountryModal = ({ selectedCountry, onClose }: Props) => {
   if (!selectedCountry) return null;
   return (
-    <div className="modal flex flex-col items-center  absolute z-20 bg-gray-700 w-dvw min-h-dvh gap-12 pt-20">
+    <div className="modal fixed z-20 flex flex-col items-center bg-gray-700 w-dvw min-h-dvh gap-12 pt-20">
       <div className="flex w-full px-20">
         <Button onClick={onClose}>Back</Button>
       </div>

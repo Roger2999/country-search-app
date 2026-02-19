@@ -11,15 +11,13 @@ import {
 import { useAllCountries } from "@/hooks/useAllCountries";
 import { CountryCard } from "@/components/ui/CountryCard";
 import { Search } from "lucide-react";
-import type { Countries } from "@/types/countriesResponse";
-import { CountryModal } from "@/components/CountryModal";
+
+import { countryStore } from "@/stores/countryStore";
 type Props = ComponentProps<"main">;
 export const Main = ({ className, ...props }: Props) => {
   const [country, setCountry] = useState<string>("");
   const [region, setRegion] = useState<string>("all");
-  const [selectedCountry, setSelectedCountry] = useState<Countries | null>(
-    null,
-  );
+  const setSelectedCountry = countryStore((state) => state.setSelectedCountry);
   const { data: countriesData, isLoading, isError, error } = useAllCountries();
   const regions = [...new Set(countriesData?.map((c) => c.region))];
   const filtratedData = countriesData?.filter((c) => {
@@ -30,15 +28,9 @@ export const Main = ({ className, ...props }: Props) => {
       region === "all" || c.region.toLowerCase() === region.toLowerCase();
     return matchesCountry && matchesRegion;
   });
-  const handleCloseModal = () => {
-    setSelectedCountry(null);
-  };
+
   return (
     <main {...props} className={`${className}`}>
-      <CountryModal
-        selectedCountry={selectedCountry}
-        onClose={handleCloseModal}
-      />
       <div className="flex flex-col gap-5 h-14 sm:flex-row sm:justify-between sm:gap-3">
         <div className="relative min-h-full">
           <Search className="absolute left-5 top-5 size-5 text-gray-400" />
