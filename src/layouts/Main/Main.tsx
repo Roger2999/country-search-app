@@ -35,6 +35,7 @@ export const Main = ({ className, ...props }: Props) => {
         <div className="relative min-h-full">
           <Search className="absolute top-5 left-5 size-5 text-gray-400" />
           <Input
+            inputMode="text"
             value={country}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setCountry(e.target.value)
@@ -67,7 +68,9 @@ export const Main = ({ className, ...props }: Props) => {
             Loading...
           </p>
         )}
-        {isError && <p>{`Error: ${error?.message}`}</p>}
+        {isError && (
+          <p className="m-auto mt-20 w-fit text-4xl font-semibold">{`Error: ${error?.message}`}</p>
+        )}
         {filtratedData &&
           filtratedData.length &&
           filtratedData?.map((c) => (

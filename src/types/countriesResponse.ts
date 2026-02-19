@@ -4,7 +4,17 @@ export interface Countries {
   cca2: string;
   capital: string[];
   region: string;
+  subregion?: string;
   population: number;
+  tld?: string[];
+  currencies?: Record<string, Currency>;
+  languages?: Record<string, string>;
+  borders?: string[];
+}
+
+export interface Currency {
+  name: string;
+  symbol: string;
 }
 
 export interface Flags {
