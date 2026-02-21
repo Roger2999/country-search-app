@@ -43,7 +43,7 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
   if (!selectedCountry) return null;
 
   return (
-    <div className="modal bg-background fixed z-20 flex min-h-dvh w-dvw flex-col gap-16 px-20 py-12">
+    <div className="modal bg-background fixed z-20 flex min-h-dvh w-dvw flex-col gap-16 px-10 py-5 sm:px-20 sm:py-12">
       <div className="w-fit">
         <Button
           size={"lg"}
