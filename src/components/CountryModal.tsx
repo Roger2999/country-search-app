@@ -43,7 +43,7 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
   if (!selectedCountry) return null;
 
   return (
-    <div className="modal bg-background fixed z-20 flex min-h-dvh w-dvw flex-col gap-5 sm:gap-16 px-10 py-5 sm:px-20 sm:py-12">
+    <div className="modal bg-background fixed z-20 flex min-h-dvh w-dvw flex-col gap-5 px-10 py-5 sm:gap-16 sm:px-20 sm:py-12">
       <div className="w-fit">
         <Button
           size={"lg"}
@@ -60,7 +60,7 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
           <img
             src={selectedCountry.flags.svg}
             alt={`${selectedCountry.name.common} flag`}
-            className="h-auto w-full max-w-140 object-cover shadow-lg"
+            className="size-4 h-auto max-h-60 w-120 max-w-full object-cover shadow-lg"
           />
         </div>
 
