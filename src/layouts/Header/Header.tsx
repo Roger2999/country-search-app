@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { Moon, Sun } from "lucide-react";
 import { themeStore } from "@/stores/themeStore";
 
 export const Header = () => {
@@ -6,16 +7,14 @@ export const Header = () => {
   const toggleTheme = themeStore((state) => state.toggleTheme);
 
   return (
-    <header className="flex justify-between items-center px-14 py-2 bg-background-secondary">
+    <header className="bg-background-secondary flex items-center justify-between px-14 py-2">
       <h1 className="font-bold">Where in the world?</h1>
       <Button variant={"ghost"} onClick={toggleTheme}>
-        <img
-          src="/vite.svg"
-          width={10}
-          height={10}
-          className="w-4 h-4"
-          alt={`Switch ${theme} mode`}
-        />
+        {theme === "dark" ? (
+          <Sun className="mr-2 h-4 w-4" />
+        ) : (
+          <Moon className="mr-2 h-4 w-4" />
+        )}
         {theme === "dark" ? "Light Mode" : "Dark Mode"}
       </Button>
     </header>
