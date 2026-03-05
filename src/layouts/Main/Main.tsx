@@ -74,8 +74,11 @@ export const Main = ({ className, ...props }: Props) => {
         {isError && (
           <p className="m-auto mt-20 w-fit text-4xl font-semibold">{`Error: ${error?.message}`}</p>
         )}
+        {filtratedData && filtratedData.length <= 0 && (
+          <p className="m-auto mt-20 w-fit text-2xl">No countries found</p>
+        )}
         {filtratedData &&
-          filtratedData.length &&
+          filtratedData.length > 0 &&
           filtratedData?.map((c) => (
             <button
               key={c.name.official}
