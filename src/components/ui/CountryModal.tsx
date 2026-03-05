@@ -1,5 +1,5 @@
 import type { Country } from "@/types/countriesResponse";
-import { Button } from "./ui/Button";
+import { Button } from "./Button";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 
@@ -47,7 +47,7 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
       <div className="w-fit">
         <Button
           size={"lg"}
-          className="bg-background-secondary text-foreground border-foreground/20 flex cursor-pointer items-center gap-2 border px-8"
+          className="bg-background-secondary text-foreground border-foreground/20 flex w-28 cursor-pointer items-center gap-2 rounded-xs border-none shadow-2xl"
           onClick={onClose}
         >
           <ArrowLeft className="h-4 w-4" />
@@ -60,7 +60,7 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
           <img
             src={selectedCountry.flags.svg}
             alt={`${selectedCountry.name.common} flag`}
-            className="size-4 h-auto max-h-60 w-120 max-w-full object-cover shadow-lg"
+            className="size-4 h-auto max-h-56 w-120 max-w-full border border-black/10 object-cover shadow-lg"
           />
         </div>
 

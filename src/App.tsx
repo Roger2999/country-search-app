@@ -1,4 +1,4 @@
-import { CountryModal } from "./components/CountryModal";
+import { CountryModal } from "./components/ui/CountryModal";
 import { Header, Main } from "./layouts";
 import { countryStore } from "./stores/countryStore";
 
@@ -10,13 +10,13 @@ export const App = () => {
     setSelectedCountry(null);
   };
   return (
-    <div className="app-container flex flex-col w-full min-h-dvh">
+    <div className="app-container flex min-h-dvh w-full flex-col">
       <Header />
       <CountryModal
         selectedCountry={selectedCountry}
         onClose={handleCloseModal}
       />
-      <Main className="flex flex-col gap-28 sm:gap-10 flex-1 px-10 sm:px-14 py-10" />
+      <Main className="flex flex-1 flex-col gap-28 px-10 py-10 sm:gap-10 sm:px-14" />
     </div>
   );
 };

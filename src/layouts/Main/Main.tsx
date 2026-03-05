@@ -37,17 +37,18 @@ export const Main = ({ className, ...props }: Props) => {
         <div className="relative min-h-full">
           <Search className="absolute top-5 left-5 size-5 text-gray-400" />
           <Input
+            type="text"
             inputMode="text"
             value={country}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setCountry(e.target.value)
             }
-            className="bg-input min-h-full w-100 max-w-full pl-14"
+            className="bg-input placeholder:text-input-foreground min-h-full w-100 max-w-full border border-black/10 pl-14 placeholder:text-sm"
             placeholder="Search for a country..."
           />
         </div>
         <Select value={region} onValueChange={setRegion}>
-          <SelectTrigger className="bg-select min-h-full w-full max-w-48 pl-6">
+          <SelectTrigger className="bg-select min-h-full w-full max-w-48 border border-black/10 pl-6">
             <SelectValue placeholder="Filter by Region" />
           </SelectTrigger>
           <SelectContent
