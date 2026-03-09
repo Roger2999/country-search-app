@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/Input";
 import { useState, type ComponentProps } from "react";
-import style from "./Main.module.css";
+import style from "./HomePage.module.css";
 import {
   Select,
   SelectContent,
@@ -11,15 +11,13 @@ import {
 import { useAllCountries } from "@/hooks/useAllCountries";
 import { CountryCard } from "@/components/ui/CountryCard";
 import { Search } from "lucide-react";
-
-import { countryStore } from "@/stores/countryStore";
 import { useDebounce } from "@/hooks/useDebounce";
-type Props = ComponentProps<"main">;
-export const Main = ({ className, ...props }: Props) => {
+import { Link } from "react-router-dom";
+
+const HomePage = ({ className }: { className?: string }) => {
   const [country, setCountry] = useState<string>("");
   const [region, setRegion] = useState<string>("all");
   const { debounceCountry } = useDebounce(country, 600);
-  const setSelectedCountry = countryStore((state) => state.setSelectedCountry);
   const { data: countriesData, isLoading, isError, error } = useAllCountries();
   const regions = [...new Set(countriesData?.map((c) => c.region))];
   const filtratedData = countriesData?.filter((c) => {
@@ -32,9 +30,9 @@ export const Main = ({ className, ...props }: Props) => {
   });
 
   return (
-    <main {...props} className={`${className}`}>
-      <div className="flex h-14 flex-col gap-5 sm:flex-row sm:justify-between sm:gap-3">
-        <div className="relative min-h-full">
+    <main className={`flex w-full flex-col gap-10 ${className}`}>
+      <div className="flex flex-col gap-5 px-8 sm:flex-row sm:justify-between sm:gap-3">
+        <div className="relative h-14">
           <Search className="absolute top-5 left-5 size-5 text-gray-400" />
           <Input
             type="text"
@@ -43,12 +41,12 @@ export const Main = ({ className, ...props }: Props) => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setCountry(e.target.value)
             }
-            className="bg-input placeholder:text-input-foreground min-h-full w-100 max-w-full border border-black/10 pl-14 placeholder:text-sm"
+            className="bg-input placeholder:text-input-foreground h-full w-100 max-w-full border border-black/10 pl-14 placeholder:text-sm"
             placeholder="Search for a country..."
           />
         </div>
         <Select value={region} onValueChange={setRegion}>
-          <SelectTrigger className="bg-select min-h-full w-full max-w-48 border border-black/10 pl-6">
+          <SelectTrigger className="bg-select min-h-14 w-full max-w-48 border border-black/10 pl-6">
             <SelectValue placeholder="Filter by Region" />
           </SelectTrigger>
           <SelectContent
@@ -65,7 +63,7 @@ export const Main = ({ className, ...props }: Props) => {
           </SelectContent>
         </Select>
       </div>
-      <div className={`${style.girdContainer}`}>
+      <div className={`${style.gridContainer}`}>
         {isLoading && (
           <p className="m-auto mt-20 w-fit text-4xl font-semibold">
             Loading...
@@ -80,10 +78,9 @@ export const Main = ({ className, ...props }: Props) => {
         {filtratedData &&
           filtratedData.length > 0 &&
           filtratedData?.map((c) => (
-            <button
-              key={c.name.official}
-              type="button"
-              onClick={() => setSelectedCountry(c)}
+            <Link
+              to={`/country/${c.cca2.toLowerCase()}`}
+              key={c.cca2}
               className="all ease transition duration-400 hover:scale-105 hover:cursor-pointer"
             >
               <CountryCard
@@ -93,9 +90,10 @@ export const Main = ({ className, ...props }: Props) => {
                 region={c.region}
                 capital={c.capital.map((c) => c)}
               ></CountryCard>
-            </button>
+            </Link>
           ))}
       </div>
     </main>
   );
 };
+export default HomePage;

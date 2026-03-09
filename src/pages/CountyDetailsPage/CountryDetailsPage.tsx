@@ -1,54 +1,48 @@
-import type { Country } from "@/types/countriesResponse";
-import { Button } from "./Button";
+import { Button } from "@/components/ui/Button";
+import { useDetailsCounties } from "@/hooks/useAllCountries";
+
 import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-interface Props {
-  selectedCountry: Country | null;
-  onClose: () => void;
-}
+const CountryDetailsPage = () => {
+  const { cca2 } = useParams();
+  const navigate = useNavigate();
+  const {
+    data: countyDataArr,
+    isLoading,
+    isError,
+    error,
+  } = useDetailsCounties(`https://restcountries.com/v3.1/alpha/${cca2}`, cca2);
 
-export const CountryModal = ({ selectedCountry, onClose }: Props) => {
-  useEffect(() => {
-    if (selectedCountry) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [selectedCountry]);
+  const countyData = countyDataArr?.[0];
 
   const currencies =
-    selectedCountry?.currencies &&
-    Object.values(selectedCountry.currencies)
-      .map((c) => c.name)
+    countyData?.currencies &&
+    Object.values(countyData.currencies)
+      .map((c: { name: string }) => c.name)
       .join(", ");
-
   const languages =
-    selectedCountry?.languages &&
-    Object.values(selectedCountry.languages).join(", ");
-
+    countyData?.languages && Object.values(countyData.languages).join(", ");
   const nativeName =
-    selectedCountry?.name?.nativeName &&
-    Object.values(selectedCountry.name.nativeName)[0]?.common;
+    countyData?.name?.nativeName &&
+    Object.values(countyData.name.nativeName)[0]?.common;
+  const population = countyData?.population?.toLocaleString();
+  const region = countyData?.region;
+  const subregion = countyData?.subregion;
+  const capital = countyData?.capital?.join(", ");
+  const topLevelDomain = countyData?.tld?.join(", ");
 
-  const population = selectedCountry?.population?.toLocaleString();
-  const region = selectedCountry?.region;
-  const subregion = selectedCountry?.subregion;
-  const capital = selectedCountry?.capital?.join(", ");
-  const topLevelDomain = selectedCountry?.tld?.join(", ");
-
-  if (!selectedCountry) return null;
+  if (!countyData) return null;
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Ha ocurrido el siguiente error: ${error?.message}</p>;
 
   return (
-    <div className="modal bg-background fixed z-20 flex min-h-dvh w-dvw flex-col gap-5 px-10 py-5 sm:gap-16 sm:px-20 sm:py-12">
+    <div className="bg-background flex flex-col gap-5 px-10 py-5 sm:gap-16 sm:px-20 sm:py-12">
       <div className="w-fit">
         <Button
           size={"lg"}
           className="bg-background-secondary text-foreground border-foreground/20 flex w-28 cursor-pointer items-center gap-2 rounded-xs border-none shadow-2xl"
-          onClick={onClose}
+          onClick={() => navigate("/homepage")}
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -58,16 +52,14 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
       <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-24">
         <div className="shrink-0">
           <img
-            src={selectedCountry.flags.svg}
-            alt={`${selectedCountry.name.common} flag`}
+            src={countyData.flags.svg}
+            alt={`${countyData.name.common} flag`}
             className="size-4 h-auto max-h-56 w-120 max-w-full border border-black/10 object-cover shadow-lg"
           />
         </div>
 
         <div className="flex flex-col gap-8">
-          <h1 className="text-3xl font-extrabold">
-            {selectedCountry.name.common}
-          </h1>
+          <h1 className="text-3xl font-extrabold">{countyData.name.common}</h1>
 
           <div className="flex flex-col gap-8 lg:flex-row lg:gap-24">
             <div className="flex flex-col gap-3">
@@ -112,3 +104,4 @@ export const CountryModal = ({ selectedCountry, onClose }: Props) => {
     </div>
   );
 };
+export default CountryDetailsPage;
