@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/Button";
+import { LoadingComponent } from "@/components/ui/LoadingComponent";
+
 import { useDetailsCounties } from "@/hooks/useAllCountries";
 
 import { ArrowLeft } from "lucide-react";
@@ -32,9 +34,9 @@ const CountryDetailsPage = () => {
   const capital = countyData?.capital?.join(", ");
   const topLevelDomain = countyData?.tld?.join(", ");
 
+  if (isLoading) return <LoadingComponent />;
+  if (isError) return <p>An error has ocurred: ${error?.message}</p>;
   if (!countyData) return null;
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Ha ocurrido el siguiente error: ${error?.message}</p>;
 
   return (
     <div className="bg-background flex flex-col gap-5 px-10 py-5 sm:gap-16 sm:px-20 sm:py-12">

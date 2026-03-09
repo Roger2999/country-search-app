@@ -12,7 +12,7 @@ export const AppRoutes = () => {
   return (
     <BrowserRouter>
       <App>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense>
           <Routes>
             <Route path="/" element={<Navigate to={"/homepage"} />} />
             <Route path="/homepage" element={<HomePage />} />

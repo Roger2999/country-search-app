@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/Input";
-import { useState, type ComponentProps } from "react";
+import { useState } from "react";
 import style from "./HomePage.module.css";
 import {
   Select,
@@ -13,6 +13,7 @@ import { CountryCard } from "@/components/ui/CountryCard";
 import { Search } from "lucide-react";
 import { useDebounce } from "@/hooks/useDebounce";
 import { Link } from "react-router-dom";
+import { LoadingComponent } from "@/components/ui/LoadingComponent";
 
 const HomePage = ({ className }: { className?: string }) => {
   const [country, setCountry] = useState<string>("");
@@ -33,8 +34,12 @@ const HomePage = ({ className }: { className?: string }) => {
     <main className={`flex w-full flex-col gap-10 ${className}`}>
       <div className="flex flex-col gap-5 px-8 sm:flex-row sm:justify-between sm:gap-3">
         <div className="relative h-14">
+          <label htmlFor="country-search" className="sr-only">
+            Search for a country
+          </label>
           <Search className="absolute top-5 left-5 size-5 text-gray-400" />
           <Input
+            id="country-search"
             type="text"
             inputMode="text"
             value={country}
@@ -46,7 +51,10 @@ const HomePage = ({ className }: { className?: string }) => {
           />
         </div>
         <Select value={region} onValueChange={setRegion}>
-          <SelectTrigger className="bg-select min-h-14 w-full max-w-48 border border-black/10 pl-6">
+          <SelectTrigger
+            aria-label="Filter by region"
+            className="bg-select min-h-14 w-full max-w-48 border border-black/10 pl-6"
+          >
             <SelectValue placeholder="Filter by Region" />
           </SelectTrigger>
           <SelectContent
@@ -63,12 +71,8 @@ const HomePage = ({ className }: { className?: string }) => {
           </SelectContent>
         </Select>
       </div>
-      <div className={`${style.gridContainer}`}>
-        {isLoading && (
-          <p className="m-auto mt-20 w-fit text-4xl font-semibold">
-            Loading...
-          </p>
-        )}
+      <ul className={`${style.gridContainer} list-none`}>
+        {isLoading && <LoadingComponent />}
         {isError && (
           <p className="m-auto mt-20 w-fit text-4xl font-semibold">{`Error: ${error?.message}`}</p>
         )}
@@ -78,21 +82,22 @@ const HomePage = ({ className }: { className?: string }) => {
         {filtratedData &&
           filtratedData.length > 0 &&
           filtratedData?.map((c) => (
-            <Link
-              to={`/country/${c.cca2.toLowerCase()}`}
-              key={c.cca2}
-              className="all ease transition duration-400 hover:scale-105 hover:cursor-pointer"
-            >
-              <CountryCard
-                flagImg={c.flags.svg}
-                countryName={c.name.common}
-                population={c.population}
-                region={c.region}
-                capital={c.capital.map((c) => c)}
-              ></CountryCard>
-            </Link>
+            <li key={c.cca2}>
+              <Link
+                to={`/country/${c.cca2.toLowerCase()}`}
+                className="all ease block h-full transition duration-400 hover:scale-105 hover:cursor-pointer"
+              >
+                <CountryCard
+                  flagImg={c.flags.svg}
+                  countryName={c.name.common}
+                  population={c.population}
+                  region={c.region}
+                  capital={c.capital.map((c) => c)}
+                ></CountryCard>
+              </Link>
+            </li>
           ))}
-      </div>
+      </ul>
     </main>
   );
 };
