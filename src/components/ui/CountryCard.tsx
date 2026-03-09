@@ -35,7 +35,8 @@ export const CountryCard = ({
           <b className="font-semibold">Region:</b> {region ? region : "?"}
         </p>
         <p>
-          <b className="font-semibold">Capital:</b> {capital ? capital : "?"}
+          <b className="font-semibold">Capital:</b>{" "}
+          {capital?.length ? capital.join(", ") : "?"}
         </p>
       </div>
     </div>

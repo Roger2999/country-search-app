@@ -92,7 +92,7 @@ const HomePage = ({ className }: { className?: string }) => {
                   countryName={c.name.common}
                   population={c.population}
                   region={c.region}
-                  capital={c.capital.map((c) => c)}
+                  capital={c.capital}
                 ></CountryCard>
               </Link>
             </li>
