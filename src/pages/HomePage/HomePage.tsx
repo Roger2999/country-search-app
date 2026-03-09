@@ -77,7 +77,9 @@ const HomePage = ({ className }: { className?: string }) => {
           <p className="m-auto mt-20 w-fit text-4xl font-semibold">{`Error: ${error?.message}`}</p>
         )}
         {filtratedData && filtratedData.length <= 0 && (
-          <p className="m-auto mt-20 w-fit text-2xl">No countries found</p>
+          <div className="absolute top-10 flex h-full w-full items-center justify-center">
+            <p className="text-2xl">No countries found</p>
+          </div>
         )}
         {filtratedData &&
           filtratedData.length > 0 &&
