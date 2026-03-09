@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/Input";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import style from "./HomePage.module.css";
 import {
   Select,
@@ -20,15 +20,22 @@ const HomePage = ({ className }: { className?: string }) => {
   const [region, setRegion] = useState<string>("all");
   const { debounceCountry } = useDebounce(country, 600);
   const { data: countriesData, isLoading, isError, error } = useAllCountries();
-  const regions = [...new Set(countriesData?.map((c) => c.region))];
-  const filtratedData = countriesData?.filter((c) => {
-    const matchesCountry = c.name?.common
-      .toLowerCase()
-      .includes(debounceCountry.toLowerCase());
-    const matchesRegion =
-      region === "all" || c.region.toLowerCase() === region.toLowerCase();
-    return matchesCountry && matchesRegion;
-  });
+  const regions = useMemo(
+    () => [...new Set(countriesData?.map((c) => c.region))],
+    [countriesData],
+  );
+  const filtratedData = useMemo(
+    () =>
+      countriesData?.filter((c) => {
+        const matchesCountry = c.name?.common
+          .toLowerCase()
+          .includes(debounceCountry.toLowerCase());
+        const matchesRegion =
+          region === "all" || c.region.toLowerCase() === region.toLowerCase();
+        return matchesCountry && matchesRegion;
+      }),
+    [countriesData, debounceCountry, region],
+  );
 
   return (
     <main className={`flex w-full flex-col gap-10 ${className}`}>
@@ -71,7 +78,7 @@ const HomePage = ({ className }: { className?: string }) => {
           </SelectContent>
         </Select>
       </div>
-      <ul className={`${style.gridContainer} list-none`}>
+      <article className={`${style.gridContainer} list-none`}>
         {isLoading && <LoadingComponent />}
         {isError && (
           <p className="m-auto mt-20 w-fit text-4xl font-semibold">{`Error: ${error?.message}`}</p>
@@ -99,7 +106,7 @@ const HomePage = ({ className }: { className?: string }) => {
               </Link>
             </li>
           ))}
-      </ul>
+      </article>
     </main>
   );
 };
