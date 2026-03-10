@@ -55,207 +55,41 @@ export interface Name {
   nativeName: NativeName;
 }
 
-export interface NativeName {
-  spa: Spa;
-}
+export type NativeName = Record<
+  string,
+  {
+    official: string;
+    common: string;
+  }
+>;
 
-export interface Spa {
-  official: string;
-  common: string;
-}
+export type Currencies = Record<
+  string,
+  {
+    name: string;
+    symbol: string;
+  }
+>;
 
-export interface Currencies {
-  CUC: Cuc;
-  CUP: Cup;
-}
-
-export interface Cuc {
-  symbol: string;
-  name: string;
-}
-
-export interface Cup {
-  symbol: string;
-  name: string;
-}
-
-export interface Languages {
-  spa: string;
-}
+export type Languages = Record<string, string>;
 
 export interface Demonyms {
-  eng: Eng;
-  fra: Fra;
+  eng: Demonym;
+  fra: Demonym;
 }
 
-export interface Eng {
+export interface Demonym {
   f: string;
   m: string;
 }
 
-export interface Fra {
-  f: string;
-  m: string;
-}
-
-export interface Translations {
-  ara: Ara;
-  bre: Bre;
-  ces: Ces;
-  cym: Cym;
-  deu: Deu;
-  est: Est;
-  fin: Fin;
-  fra: Fra2;
-  hrv: Hrv;
-  hun: Hun;
-  ind: Ind;
-  ita: Ita;
-  jpn: Jpn;
-  kor: Kor;
-  nld: Nld;
-  per: Per;
-  pol: Pol;
-  por: Por;
-  rus: Rus;
-  slk: Slk;
-  spa: Spa2;
-  srp: Srp;
-  swe: Swe;
-  tur: Tur;
-  urd: Urd;
-  zho: Zho;
-}
-
-export interface Ara {
-  official: string;
-  common: string;
-}
-
-export interface Bre {
-  official: string;
-  common: string;
-}
-
-export interface Ces {
-  official: string;
-  common: string;
-}
-
-export interface Cym {
-  official: string;
-  common: string;
-}
-
-export interface Deu {
-  official: string;
-  common: string;
-}
-
-export interface Est {
-  official: string;
-  common: string;
-}
-
-export interface Fin {
-  official: string;
-  common: string;
-}
-
-export interface Fra2 {
-  official: string;
-  common: string;
-}
-
-export interface Hrv {
-  official: string;
-  common: string;
-}
-
-export interface Hun {
-  official: string;
-  common: string;
-}
-
-export interface Ind {
-  official: string;
-  common: string;
-}
-
-export interface Ita {
-  official: string;
-  common: string;
-}
-
-export interface Jpn {
-  official: string;
-  common: string;
-}
-
-export interface Kor {
-  official: string;
-  common: string;
-}
-
-export interface Nld {
-  official: string;
-  common: string;
-}
-
-export interface Per {
-  official: string;
-  common: string;
-}
-
-export interface Pol {
-  official: string;
-  common: string;
-}
-
-export interface Por {
-  official: string;
-  common: string;
-}
-
-export interface Rus {
-  official: string;
-  common: string;
-}
-
-export interface Slk {
-  official: string;
-  common: string;
-}
-
-export interface Spa2 {
-  official: string;
-  common: string;
-}
-
-export interface Srp {
-  official: string;
-  common: string;
-}
-
-export interface Swe {
-  official: string;
-  common: string;
-}
-
-export interface Tur {
-  official: string;
-  common: string;
-}
-
-export interface Urd {
-  official: string;
-  common: string;
-}
-
-export interface Zho {
-  official: string;
-  common: string;
-}
+export type Translations = Record<
+  string,
+  {
+    official: string;
+    common: string;
+  }
+>;
 
 export interface Flags {
   png: string;
