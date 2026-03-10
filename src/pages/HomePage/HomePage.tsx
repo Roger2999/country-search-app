@@ -92,7 +92,7 @@ const HomePage = ({ className }: { className?: string }) => {
           filtratedData.length > 0 &&
           filtratedData?.map((c) => (
             <li key={c.cca2}>
-              <ul>
+              <ul className="h-full">
                 <Link
                   to={`/country/${c.cca2.toLowerCase()}`}
                   className="all ease block h-full transition duration-400 hover:scale-105 hover:cursor-pointer"
