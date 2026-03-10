@@ -92,18 +92,20 @@ const HomePage = ({ className }: { className?: string }) => {
           filtratedData.length > 0 &&
           filtratedData?.map((c) => (
             <li key={c.cca2}>
-              <Link
-                to={`/country/${c.cca2.toLowerCase()}`}
-                className="all ease block h-full transition duration-400 hover:scale-105 hover:cursor-pointer"
-              >
-                <CountryCard
-                  flagImg={c.flags.svg}
-                  countryName={c.name.common}
-                  population={c.population}
-                  region={c.region}
-                  capital={c.capital}
-                ></CountryCard>
-              </Link>
+              <ul>
+                <Link
+                  to={`/country/${c.cca2.toLowerCase()}`}
+                  className="all ease block h-full transition duration-400 hover:scale-105 hover:cursor-pointer"
+                >
+                  <CountryCard
+                    flagImg={c.flags.svg}
+                    countryName={c.name.common}
+                    population={c.population}
+                    region={c.region}
+                    capital={c.capital}
+                  ></CountryCard>
+                </Link>
+              </ul>
             </li>
           ))}
       </article>
