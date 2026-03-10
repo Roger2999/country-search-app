@@ -78,15 +78,15 @@ const HomePage = ({ className }: { className?: string }) => {
           </SelectContent>
         </Select>
       </div>
-      <article className={`${style.gridContainer} list-none`}>
+      <ul className={`${style.gridContainer} list-none`}>
         {isLoading && <LoadingComponent />}
         {isError && (
           <p className="m-auto mt-20 w-fit text-4xl font-semibold">{`Error: ${error?.message}`}</p>
         )}
         {filtratedData && filtratedData.length <= 0 && (
-          <div className="absolute top-10 flex h-full w-full items-center justify-center">
+          <li className="absolute top-10 flex h-full w-full items-center justify-center">
             <p className="text-2xl">No countries found</p>
-          </div>
+          </li>
         )}
         {filtratedData &&
           filtratedData.length > 0 &&
@@ -106,7 +106,7 @@ const HomePage = ({ className }: { className?: string }) => {
               </Link>
             </li>
           ))}
-      </article>
+      </ul>
     </main>
   );
 };
