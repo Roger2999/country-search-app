@@ -32,7 +32,7 @@
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
-  --color-input-foreground:var(--input-foreground);
+  --color-input-foreground: var(--input-foreground);
   --color-select: var(--input);
   --color-select-options: var(--input);
   --color-ring: var(--ring);
@@ -138,11 +138,10 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
-    @apply bg-background text-foreground;
+
     font-family: var(--font-sans);
   }
 }
