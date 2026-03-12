@@ -36,6 +36,9 @@ const HomePage = ({ className }: { className?: string }) => {
       }),
     [countriesData, debounceCountry, region],
   );
+  const sortedData = filtratedData?.sort((a, b) =>
+    a.name.common.localeCompare(b.name.common),
+  );
 
   return (
     <main className={`flex w-full flex-col gap-10 ${className}`}>
@@ -83,14 +86,14 @@ const HomePage = ({ className }: { className?: string }) => {
         {isError && (
           <p className="m-auto mt-20 w-fit text-4xl font-semibold">{`Error: ${error?.message}`}</p>
         )}
-        {filtratedData && filtratedData.length <= 0 && (
+        {sortedData && sortedData.length <= 0 && (
           <li className="absolute top-10 flex h-full w-full items-center justify-center">
             <p className="text-2xl">No countries found</p>
           </li>
         )}
-        {filtratedData &&
-          filtratedData.length > 0 &&
-          filtratedData?.map((c) => (
+        {sortedData &&
+          sortedData.length > 0 &&
+          sortedData?.map((c) => (
             <li key={c.cca2}>
               <Link
                 to={`/country/${c.cca2.toLowerCase()}`}
