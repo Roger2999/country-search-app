@@ -4,7 +4,7 @@ import { LoadingComponent } from "@/components/ui/LoadingComponent";
 import { useDetailsCounties } from "@/hooks/useAllCountries";
 
 import { ArrowLeft } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const CountryDetailsPage = () => {
   const { cca2 } = useParams();
@@ -44,7 +44,7 @@ const CountryDetailsPage = () => {
         <Button
           size={"lg"}
           className="bg-background-secondary text-foreground border-foreground/20 flex w-28 cursor-pointer items-center gap-2 rounded-xs border-none shadow-2xl"
-          onClick={() => navigate("/homepage")}
+          onClick={() => navigate(-1)}
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -100,6 +100,23 @@ const CountryDetailsPage = () => {
                 {languages || "N/A"}
               </p>
             </div>
+          </div>
+          <div className="flex flex-col gap-3">
+            <p className="flex flex-wrap gap-5">
+              <span className="font-semibold">Borders:</span>
+              {countyData.borders && countyData.borders.length > 0 ? (
+                countyData.borders.map((b) => (
+                  <Link
+                    to={`/country/${b}`}
+                    className="rounded-sm border px-3 py-1"
+                  >
+                    {b}
+                  </Link>
+                ))
+              ) : (
+                <span>--</span>
+              )}
+            </p>
           </div>
         </div>
       </div>

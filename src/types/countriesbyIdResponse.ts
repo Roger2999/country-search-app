@@ -16,6 +16,7 @@ export interface CountryById {
   area: number;
   maps: Maps;
   population: number;
+  borders: string[];
   fifa: string;
   car: Car;
   timezones: string[];
