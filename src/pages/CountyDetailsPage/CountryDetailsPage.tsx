@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { LoadingComponent } from "@/components/ui/LoadingComponent";
 
 import { useDetailsCounties } from "@/hooks/useAllCountries";
+import { useBorderCountries } from "@/hooks/useBorderCountries";
 
 import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -17,6 +18,8 @@ const CountryDetailsPage = () => {
   } = useDetailsCounties(`https://restcountries.com/v3.1/alpha/${cca2}`, cca2);
 
   const countyData = countyDataArr?.[0];
+
+  const { data: borderCountries } = useBorderCountries(countyData?.borders);
 
   const currencies =
     countyData?.currencies &&
@@ -104,13 +107,14 @@ const CountryDetailsPage = () => {
           <div className="flex flex-col gap-3">
             <p className="flex flex-wrap gap-5">
               <span className="font-semibold">Borders:</span>
-              {countyData.borders && countyData.borders.length > 0 ? (
-                countyData.borders.map((b) => (
+              {borderCountries && borderCountries.length > 0 ? (
+                borderCountries.map((border) => (
                   <Link
-                    to={`/country/${b}`}
+                    key={border.cca3}
+                    to={`/country/${border.cca3}`}
                     className="rounded-sm border px-3 py-1"
                   >
-                    {b}
+                    {border.name.common}
                   </Link>
                 ))
               ) : (
