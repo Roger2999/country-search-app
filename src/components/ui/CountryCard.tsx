@@ -14,7 +14,7 @@ export const CountryCard = ({
 }: Props) => {
   return (
     <div className="card-container flex min-h-full flex-col">
-      <div className="aspect-16/8 w-full overflow-hidden">
+      <figure className="aspect-16/8 w-full overflow-hidden">
         <img
           className="h-full w-full border border-black/10 object-cover"
           width={20}
@@ -22,8 +22,8 @@ export const CountryCard = ({
           src={flagImg}
           alt={`${countryName}-flag`}
         />
-      </div>
-      <div className="bg-background-secondary flex flex-1 flex-col flex-wrap items-start gap-2 rounded-sm px-10 py-5 shadow-xl">
+      </figure>
+      <div className="bg-background-secondary text-foreground flex flex-1 flex-col flex-wrap items-start gap-2 rounded-sm px-10 py-5 shadow-xl">
         <p className="mb-2 text-left text-xl font-bold">
           {countryName ? countryName : "?"}
         </p>
